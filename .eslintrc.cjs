@@ -12,8 +12,11 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     indent: ["error", 2],
-    "linebreak-style": ["error", process.platform === "win64" ? "windows" : "unix"],
+    "linebreak-style": 0,
     quotes: ["error", "double"],
     semi: ["error", "always"],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
   },
 };

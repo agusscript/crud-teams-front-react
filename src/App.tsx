@@ -1,7 +1,19 @@
+import { Link } from "react-router-dom";
+
 function App() {
   return (
     <>
-      <p>Crut teams</p>
+      <header>
+        <h1>Crud teams</h1>
+      </header>
+      <main>
+        <Link to="/teams">
+          <button className="main-btn">View Teams</button>
+        </Link>
+        <Link to="/form/add">
+          <button className="main-btn">Add Team</button>
+        </Link>
+      </main>
     </>
   );
 }
