@@ -5,7 +5,7 @@ function AddForm() {
     <section className="add-form-section">
       <h1>Add Team</h1>
 
-      <form className="form-add">
+      <form action="/teams" method="post" className="form-add">
         <label htmlFor="name">Name</label>
         <input type="text" id="name" name="name" />
 

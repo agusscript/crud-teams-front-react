@@ -1,12 +1,15 @@
 import "./Teams.scss";
 import Team from "../../entities/Team";
-import teamsData from "../../../data/teams.json";
+import get from "../../utils/httpClient";
+import Loader from "../../components/Loader/Loader";
+import { useEffect, useState } from "react";
 
-function Teams() {
-  const teams: Team[] = teamsData;
+function Teams(): JSX.Element {
+  const [teams, setTeams] = useState<Team[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <>
+  function renderTeams(): JSX.Element {
+    return (
       <section className="teams-section">
         <h1>Teams</h1>
         <table className="table-teams">
@@ -18,24 +21,52 @@ function Teams() {
             </tr>
           </thead>
           <tbody>
-            {teams.map((team) => (
-              <tr key={team.id}>
-                <td>{team.name}</td>
-                <td>{team.area.name}</td>
+            {!loading ? (
+              teams.map((team) => (
+                <tr key={team.id}>
+                  <td>{team.name}</td>
+                  <td>{team.area.name}</td>
+                  <td>
+                    <div className="table-btn-container">
+                      <button className="table-btn">View</button>
+                      <button className="table-btn">Edit</button>
+                      <button className="table-btn">Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
                 <td>
-                  <div className="table-btn-container">
-                    <button className="table-btn">View</button>
-                    <button className="table-btn">Edit</button>
-                    <button className="table-btn">Delete</button>
-                  </div>
+                  <Loader />
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </section>
-    </>
-  );
+    );
+  }
+
+  async function fetchTeams(): Promise<void> {
+    setLoading(true);
+
+    try {
+      const response = await get("/teams");
+      const teamsData = response.data;
+      setTeams(teamsData);
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchTeams();
+  }, []);
+
+  return renderTeams();
 }
 
 export default Teams;
