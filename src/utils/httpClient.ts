@@ -4,7 +4,7 @@ const API = "http://localhost:8080";
 
 type TeamApiResponse = {
   status: string;
-  data: Team[];
+  data: Team[] | Team;
 };
 
 async function get(path: string): Promise<TeamApiResponse> {

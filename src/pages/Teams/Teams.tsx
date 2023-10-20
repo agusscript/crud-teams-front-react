@@ -3,9 +3,10 @@ import Team from "../../entities/Team";
 import get from "../../utils/httpClient";
 import Loader from "../../components/Loader/Loader";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Teams(): JSX.Element {
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teams, setTeams] = useState([] as Team[]);
   const [loading, setLoading] = useState(true);
 
   function renderTeams(): JSX.Element {
@@ -28,7 +29,9 @@ function Teams(): JSX.Element {
                   <td>{team.area.name}</td>
                   <td>
                     <div className="table-btn-container">
-                      <button className="table-btn">View</button>
+                      <Link to={"/teams/" + team.id}>
+                        <button className="table-btn">View</button>
+                      </Link>
                       <button className="table-btn">Edit</button>
                       <button className="table-btn">Delete</button>
                     </div>
@@ -53,7 +56,7 @@ function Teams(): JSX.Element {
 
     try {
       const response = await get("/teams");
-      const teamsData = response.data;
+      const teamsData = response.data as Team[];
       setTeams(teamsData);
     } catch (error) {
       console.log(error);
