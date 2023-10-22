@@ -32,7 +32,9 @@ function Teams(): JSX.Element {
                       <Link to={"/teams/" + team.id}>
                         <button className="table-btn">View</button>
                       </Link>
-                      <button className="table-btn">Edit</button>
+                      <Link to={"/teams/edit/" + team.id}>
+                        <button className="table-btn">Edit</button>
+                      </Link>
                       <button className="table-btn">Delete</button>
                     </div>
                   </td>

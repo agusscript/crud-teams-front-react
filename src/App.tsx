@@ -10,7 +10,7 @@ function App() {
         <Link to="/teams">
           <button className="main-btn">View Teams</button>
         </Link>
-        <Link to="/form/add">
+        <Link to="/teams/add">
           <button className="main-btn">Add Team</button>
         </Link>
       </main>

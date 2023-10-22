@@ -18,7 +18,7 @@ function TeamDetails(): JSX.Element {
       <section className="team-details">
         {!loading ? (
           <div>
-            <h1>TeamDetails</h1>
+            <h1>Team Details</h1>
             <h2>{teamDetails.name}</h2>
             <img
               src={teamDetails.crestUrl}
