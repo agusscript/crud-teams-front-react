@@ -1,6 +1,6 @@
 import "./TeamDetails.scss";
 import Team from "../../entities/Team";
-import get from "../../utils/httpClient";
+import { get } from "../../services/api";
 import Loader from "../../components/Loader/Loader";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -12,35 +12,6 @@ function TeamDetails(): JSX.Element {
 
   const imgPlaceholder =
     "https://raw.githubusercontent.com/agusscript/crud-teams-frontend/main/public/no-img-placeholder.jpg";
-
-  function renderTeamDetails() {
-    return (
-      <section className="team-details">
-        {!loading ? (
-          <div>
-            <h1>Team Details</h1>
-            <h2>{teamDetails.name}</h2>
-            <img
-              src={teamDetails.crestUrl}
-              alt={teamDetails.name}
-              onError={(e) => {
-                e.currentTarget.src = imgPlaceholder;
-              }}
-            />
-            <p>{teamDetails.tla}</p>
-            <p>{teamDetails.area.name}</p>
-            <p>{teamDetails.address}</p>
-            <p>{teamDetails.venue}</p>
-            <p>{teamDetails.founded}</p>
-            <p>{teamDetails.email}</p>
-            <p>{teamDetails.website}</p>
-          </div>
-        ) : (
-          <Loader />
-        )}
-      </section>
-    );
-  }
 
   async function fetchTeamDetails(): Promise<void> {
     setLoading(true);
@@ -60,7 +31,32 @@ function TeamDetails(): JSX.Element {
     fetchTeamDetails();
   }, []);
 
-  return renderTeamDetails();
+  return (
+    <section className="team-details">
+      {!loading ? (
+        <div>
+          <h1>Team Details</h1>
+          <h2>{teamDetails.name}</h2>
+          <img
+            src={teamDetails.crestUrl}
+            alt={teamDetails.name}
+            onError={(e) => {
+              e.currentTarget.src = imgPlaceholder;
+            }}
+          />
+          <p>{teamDetails.tla}</p>
+          <p>{teamDetails.area.name}</p>
+          <p>{teamDetails.address}</p>
+          <p>{teamDetails.venue}</p>
+          <p>{teamDetails.founded}</p>
+          <p>{teamDetails.email}</p>
+          <p>{teamDetails.website}</p>
+        </div>
+      ) : (
+        <Loader />
+      )}
+    </section>
+  );
 }
 
 export default TeamDetails;

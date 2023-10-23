@@ -16,6 +16,7 @@ interface Team {
   clubColors: string;
   venue: string;
   lastUpdated: string;
+  country?: string;
 }
 
 export default Team;
