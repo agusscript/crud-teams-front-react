@@ -1,31 +1,10 @@
 import "./Teams.scss";
 import Loader from "../../components/Loader/Loader";
-import Team from "../../entities/Team";
-import { get } from "../../services/api";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useFetchTeams from "../../hooks/useFetchTeams";
 
 function Teams(): JSX.Element {
-  const [teams, setTeams] = useState([] as Team[]);
-  const [loading, setLoading] = useState(true);
-
-  async function fetchTeams(): Promise<void> {
-    setLoading(true);
-
-    try {
-      const response = await get("/teams");
-      const teamsData = response.data as Team[];
-      setTeams(teamsData);
-    } catch (error) {
-      console.log(error);
-    }
-
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    fetchTeams();
-  }, []);
+  const { teams, loading } = useFetchTeams();
 
   return (
     <section className="teams-section">

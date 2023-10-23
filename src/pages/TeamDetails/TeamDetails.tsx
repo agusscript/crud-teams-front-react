@@ -1,35 +1,12 @@
 import "./TeamDetails.scss";
-import Team from "../../entities/Team";
-import { get } from "../../services/api";
 import Loader from "../../components/Loader/Loader";
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import useFetchTeamDetails from "../../hooks/useFetchTeamDetails";
 
 function TeamDetails(): JSX.Element {
-  const { teamId } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [teamDetails, setTeamDetails] = useState({} as Team);
+  const { loading, teamDetails } = useFetchTeamDetails();
 
   const imgPlaceholder =
     "https://raw.githubusercontent.com/agusscript/crud-teams-frontend/main/public/no-img-placeholder.jpg";
-
-  async function fetchTeamDetails(): Promise<void> {
-    setLoading(true);
-
-    try {
-      const response = await get(`/teams/${teamId}`);
-      const teamData = response.data as Team;
-      setTeamDetails(teamData);
-    } catch (error) {
-      console.log(error);
-    }
-
-    setLoading(false);
-  }
-
-  useEffect(() => {
-    fetchTeamDetails();
-  }, []);
 
   return (
     <section className="team-details">
