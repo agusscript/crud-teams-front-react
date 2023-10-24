@@ -4,7 +4,7 @@ import Form from "../../components/Form/Form";
 import Team from "../../entities/Team";
 import { send } from "../../services/api";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetchTeamDetails from "../../hooks/useFetchTeamDetails";
 
@@ -39,6 +39,10 @@ function FormEdit(): JSX.Element {
     send("PATCH", "/teams/" + teamId, newTeam);
     navigate("/teams");
   }
+
+  useEffect(() => {
+    document.title = "Edit Team";
+  }, []);
 
   return (
     <section className="form-edit-section">

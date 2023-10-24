@@ -2,7 +2,7 @@ import "./FormAdd.scss";
 import Form from "../../components/Form/Form";
 import Team from "../../entities/Team";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { send } from "../../services/api";
 
 function FormAdd(): JSX.Element {
@@ -22,6 +22,10 @@ function FormAdd(): JSX.Element {
       [e.target.name]: e.target.value,
     }));
   }
+
+  useEffect(() => {
+    document.title = "Add Team";
+  }, []);
 
   return (
     <section className="form-add-section">

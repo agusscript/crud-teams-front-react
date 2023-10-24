@@ -1,12 +1,17 @@
 import "./TeamDetails.scss";
 import Loader from "../../components/Loader/Loader";
 import useFetchTeamDetails from "../../hooks/useFetchTeamDetails";
+import { useEffect } from "react";
 
 function TeamDetails(): JSX.Element {
   const { loading, teamDetails } = useFetchTeamDetails();
 
   const imgPlaceholder =
     "https://raw.githubusercontent.com/agusscript/crud-teams-frontend/main/public/no-img-placeholder.jpg";
+
+  useEffect(() => {
+    document.title = teamDetails.name;
+  }, [teamDetails]);
 
   return (
     <section className="team-details">

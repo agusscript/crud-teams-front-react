@@ -1,5 +1,18 @@
 .teams-section {
   text-align: center;
+
+  h1 {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .teams-amount {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    font-style: italic;
+    letter-spacing: 0.05rem;
+  }
 }
 
 .table-teams {

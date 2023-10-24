@@ -1,14 +1,35 @@
 import "./Teams.scss";
-import Loader from "../../components/Loader/Loader";
-import { Link } from "react-router-dom";
 import useFetchTeams from "../../hooks/useFetchTeams";
+import Loader from "../../components/Loader/Loader";
+import Team from "../../entities/Team";
+import ModalDelete from "../../components/ModalDelete/ModalDelete";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Teams(): JSX.Element {
   const { teams, loading } = useFetchTeams();
+  const [modal, setModal] = useState({
+    show: false,
+    team: {} as Team | null,
+  });
+
+  function handleClick(team: Team) {
+    setModal({
+      show: true,
+      team: team,
+    });
+  }
+
+  useEffect(() => {
+    document.title = "Teams";
+  }, []);
 
   return (
     <section className="teams-section">
-      <h1>Teams</h1>
+      <Link to={"/"} replace={true}>
+        <h1>Teams</h1>
+      </Link>
+      <p className="teams-amount">{teams.length} teams</p>
       <table className="table-teams">
         <thead>
           <tr>
@@ -31,7 +52,9 @@ function Teams(): JSX.Element {
                     <Link to={"/teams/edit/" + team.id}>
                       <button className="table-btn">Edit</button>
                     </Link>
-                    <button className="table-btn">Delete</button>
+                    <button className="table-btn" onClick={() => handleClick(team)}>
+                      Delete
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -45,6 +68,7 @@ function Teams(): JSX.Element {
           )}
         </tbody>
       </table>
+      <ModalDelete show={modal.show} team={modal.team} setShow={setModal} />
     </section>
   );
 }

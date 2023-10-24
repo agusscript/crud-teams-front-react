@@ -1,14 +1,14 @@
 import "./Form.scss";
 import Team from "../../entities/Team";
 
-type FormType = {
+type FormProps = {
   typeForm: string;
   teamData: Team | null;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-function Form({ typeForm, teamData, onSubmit, onChange }: FormType) {
+function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
   return (
     <form
       encType="multipart/form-data"
