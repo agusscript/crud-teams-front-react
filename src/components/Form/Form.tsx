@@ -10,11 +10,7 @@ type FormProps = {
 
 function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
   return (
-    <form
-      encType="multipart/form-data"
-      onSubmit={onSubmit}
-      className="form"
-    >
+    <form onSubmit={onSubmit} className="form">
       <label htmlFor="name">Name *</label>
       <input
         type="text"
@@ -114,8 +110,14 @@ function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
         onChange={onChange}
       />
 
-      <label htmlFor="image">Image</label>
-      <input type="file" name="image" id="image" />
+      <label htmlFor="crestUrl">Image Url</label>
+      <input
+        type="text"
+        name="crestUrl"
+        id="crestUrl"
+        defaultValue={teamData?.crestUrl}
+        onChange={onChange}
+      />
 
       <button className="main-btn" type="submit">
         {typeForm} Team

@@ -68,6 +68,9 @@ function Teams(): JSX.Element {
           )}
         </tbody>
       </table>
+      <Link to="/teams/add">
+        <button className={`main-btn ${loading && "hide"}`}>Add New Team</button>
+      </Link>
       <ModalDelete show={modal.show} team={modal.team} setShow={setModal} />
     </section>
   );
