@@ -29,10 +29,13 @@ function TeamDetails(): JSX.Element {
           <p>{teamDetails.tla}</p>
           <p>{teamDetails.area.name}</p>
           <p>{teamDetails.address}</p>
-          <p>{teamDetails.venue}</p>
-          <p>{teamDetails.founded}</p>
-          <p>{teamDetails.email}</p>
-          <p>{teamDetails.website}</p>
+          <p>Stadium {teamDetails.venue}</p>
+          <p>Founded in {teamDetails.founded}</p>
+          <p>Colors: {teamDetails.clubColors}</p>
+          <p>Email: {teamDetails.email}</p>
+          <p>Website: {teamDetails.website}</p>
+          <p>Phone: {teamDetails.phone}</p>
+          <p>Last Updated: {teamDetails.lastUpdated}</p>
         </div>
       ) : (
         <Loader />

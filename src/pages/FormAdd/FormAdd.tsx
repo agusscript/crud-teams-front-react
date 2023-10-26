@@ -9,10 +9,17 @@ function FormAdd(): JSX.Element {
   const navigate = useNavigate();
   const [teamDetails, setTeamDetails] = useState({} as Team);
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
 
-    send("POST", "/teams", teamDetails);
+    const newTeamRequest = await send("POST", "/teams", teamDetails);
+
+    if (newTeamRequest?.status != "ERROR") {
+      alert("Team added successfully");
+    } else {
+      alert("An error occurred while adding the team");
+    }
+
     navigate("/");
   }
 

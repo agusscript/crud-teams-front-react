@@ -32,11 +32,18 @@ function FormEdit(): JSX.Element {
     return updatedTeam;
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
 
     const newTeam = mergeTeamDetails();
-    send("PATCH", "/teams/" + teamId, newTeam);
+    const updatedTeamRequest = await send("PATCH", "/teams/" + teamId, newTeam);
+
+    if (updatedTeamRequest?.status != "ERROR") {
+      alert("Team updated successfully");
+    } else {
+      alert("An error occurred while updating the team");
+    }
+
     navigate("/teams");
   }
 
