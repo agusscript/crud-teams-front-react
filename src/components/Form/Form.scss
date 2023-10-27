@@ -19,6 +19,14 @@
     outline: none;
     border: none;
     background-color: rgba(240, 248, 255, 0.9);
+
+    &::placeholder {
+      color: red;
+    }
+
+    &.error {
+      border: 1px solid red;
+    }
   }
 
   input[type="file"] {

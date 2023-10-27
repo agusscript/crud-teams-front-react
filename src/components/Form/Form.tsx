@@ -1,22 +1,35 @@
 import "./Form.scss";
 import Team from "../../entities/Team";
+import { useForm } from "react-hook-form";
 
 type FormProps = {
   typeForm: string;
   teamData: Team | null;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (team: Team) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Team>();
+
+  const errorReqField = "This field can't be empty";
+
   return (
-    <form onSubmit={onSubmit} className="form">
+    <form onSubmit={handleSubmit(onSubmit)} className="form">
       <label htmlFor="name">Name *</label>
       <input
         type="text"
         id="name"
-        name="name"
         defaultValue={teamData?.name}
+        {...register("name", {
+          required: errorReqField,
+        })}
+        placeholder={errors.name?.message}
+        name="name"
         onChange={onChange}
       />
 
@@ -24,35 +37,51 @@ function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
       <input
         type="text"
         id="shortName"
-        name="shortName"
         defaultValue={teamData?.shortName}
+        {...register("shortName", {
+          required: errorReqField,
+        })}
+        placeholder={errors.shortName?.message}
+        name="shortName"
         onChange={onChange}
       />
 
       <label htmlFor="tla">Initials *</label>
       <input
         type="text"
-        name="tla"
         id="tla"
         defaultValue={teamData?.tla}
+        {...register("tla", {
+          required: errorReqField,
+        })}
+        placeholder={errors.tla?.message}
+        name="tla"
         onChange={onChange}
       />
 
       <label htmlFor="country">Country *</label>
       <input
         type="text"
-        name="country"
         id="country"
         defaultValue={teamData?.area.name}
+        {...register("country", {
+          required: errorReqField,
+        })}
+        placeholder={errors.country?.message}
+        name="country"
         onChange={onChange}
       />
 
       <label htmlFor="founded">Founded Date *</label>
       <input
         type="text"
-        name="founded"
         id="founded"
         defaultValue={teamData?.founded}
+        {...register("founded", {
+          required: errorReqField,
+        })}
+        placeholder={errors.founded?.message}
+        name="founded"
         onChange={onChange}
       />
 
@@ -65,21 +94,29 @@ function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
         onChange={onChange}
       />
 
-      <label htmlFor="venue">Stadium Name</label>
+      <label htmlFor="venue">Stadium Name *</label>
       <input
         type="text"
-        name="venue"
         id="venue"
         defaultValue={teamData?.venue}
+        {...register("venue", {
+          required: errorReqField,
+        })}
+        placeholder={errors.venue?.message}
+        name="venue"
         onChange={onChange}
       />
 
-      <label htmlFor="clubColors">Club Colors</label>
+      <label htmlFor="clubColors">Club Colors *</label>
       <input
         type="text"
-        name="clubColors"
         id="clubColors"
         defaultValue={teamData?.clubColors}
+        {...register("clubColors", {
+          required: errorReqField,
+        })}
+        placeholder={errors.clubColors?.message}
+        name="clubColors"
         onChange={onChange}
       />
 
@@ -92,12 +129,16 @@ function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
         onChange={onChange}
       />
 
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">Email *</label>
       <input
         type="text"
-        name="email"
         id="email"
         defaultValue={teamData?.email}
+        {...register("email", {
+          required: errorReqField,
+        })}
+        placeholder={errors.email?.message}
+        name="email"
         onChange={onChange}
       />
 

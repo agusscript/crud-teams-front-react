@@ -9,9 +9,7 @@ function FormAdd(): JSX.Element {
   const navigate = useNavigate();
   const [teamDetails, setTeamDetails] = useState({} as Team);
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>): Promise<void> {
-    event.preventDefault();
-
+  async function handleSubmit(): Promise<void> {
     const newTeamRequest = await send("POST", "/teams", teamDetails);
 
     if (newTeamRequest?.status != "ERROR") {
