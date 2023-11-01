@@ -1,6 +1,7 @@
 import Team from "../entities/Team";
+import { BACKEND_URL } from "../../env";
 
-const API = "http://localhost:8080";
+const API = BACKEND_URL;
 
 type TeamApiResponse = {
   status: string;
