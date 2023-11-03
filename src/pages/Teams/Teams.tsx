@@ -29,7 +29,9 @@ function Teams(): JSX.Element {
       <Link to={"/"} replace={true}>
         <h1>Teams</h1>
       </Link>
-      <p className="teams-amount">{teams.length} teams</p>
+      <p className="teams-amount">
+        <span className="teams-amount-number">{teams.length}</span> teams
+      </p>
       <table className="table-teams">
         <thead>
           <tr>
@@ -47,12 +49,27 @@ function Teams(): JSX.Element {
                 <td>
                   <div className="table-btn-container">
                     <Link to={"/teams/" + team.id}>
-                      <button className="table-btn">View</button>
+                      <button
+                        id="view-team"
+                        className="table-btn"
+                      >
+                        View
+                      </button>
                     </Link>
                     <Link to={"/teams/edit/" + team.id}>
-                      <button className="table-btn">Edit</button>
+                      <button
+                        id="edit-team"
+                        className="table-btn"
+                        data-name={"edit " + team.name}
+                      >
+                        Edit
+                      </button>
                     </Link>
-                    <button className="table-btn" onClick={() => handleClick(team)}>
+                    <button
+                      id="delete-team"
+                      className="table-btn"
+                      onClick={() => handleClick(team)}
+                    >
                       Delete
                     </button>
                   </div>
@@ -69,7 +86,9 @@ function Teams(): JSX.Element {
         </tbody>
       </table>
       <Link to="/teams/add">
-        <button className={`main-btn ${loading && "hide"}`}>Add New Team</button>
+        <button id="add-new-team" className={`main-btn ${loading && "hide"}`}>
+          Add New Team
+        </button>
       </Link>
       <ModalDelete show={modal.show} team={modal.team} setShow={setModal} />
     </section>

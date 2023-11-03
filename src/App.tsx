@@ -9,14 +9,18 @@ function App() {
   return (
     <>
       <header>
-        <h1>Crud teams</h1>
+        <h1 className="title">Crud teams</h1>
       </header>
       <main>
         <Link to="/teams">
-          <button className="main-btn">View Teams</button>
+          <button id="view-teams" className="main-btn">
+            View Teams
+          </button>
         </Link>
         <Link to="/teams/add">
-          <button className="main-btn">Add Team</button>
+          <button id="add-team" className="main-btn">
+            Add Team
+          </button>
         </Link>
       </main>
     </>

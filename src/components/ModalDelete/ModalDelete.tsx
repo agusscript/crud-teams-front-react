@@ -21,10 +21,10 @@ function ModalDelete({ show, team, setShow }: ModalDeleteProps) {
       <p className="modal-delete-team">{team?.name}</p>
       <p>Are you sure you want to delete this team?</p>
       <div className="modal-delete-btn-container">
-        <button className="table-btn" onClick={() => handleDelete(team as Team)}>
+        <button id="confirm-delete" className="table-btn" onClick={() => handleDelete(team as Team)}>
           Yes
         </button>
-        <button className="table-btn" onClick={() => setShow({ show: false, team: null })}>
+        <button id="cancel-delete" className="table-btn" onClick={() => setShow({ show: false, team: null })}>
           No
         </button>
       </div>

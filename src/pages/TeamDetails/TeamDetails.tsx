@@ -14,24 +14,27 @@ function TeamDetails(): JSX.Element {
   }, [teamDetails]);
 
   return (
-    <section className="team-details">
+    <section className="team-details-section">
       {!loading ? (
         <div>
           <h1>Team Details</h1>
-          <h2>{teamDetails.name}</h2>
+          <h2 className="team-name" data-name={teamDetails.name}>
+            {teamDetails.name}
+          </h2>
           <img
+            className="team-image"
             src={teamDetails.crestUrl}
             alt={teamDetails.name}
             onError={(e) => {
               e.currentTarget.src = imgPlaceholder;
             }}
           />
-          <p>{teamDetails.tla}</p>
-          <p>{teamDetails.area.name}</p>
+          <p className="team-tla">{teamDetails.tla}</p>
+          <p className="team-country">{teamDetails.area.name}</p>
           <p>{teamDetails.address}</p>
-          <p>Stadium {teamDetails.venue}</p>
-          <p>Founded in {teamDetails.founded}</p>
-          <p>Colors: {teamDetails.clubColors}</p>
+          <p className="team-venue">Stadium {teamDetails.venue}</p>
+          <p className="team-founded">Founded in {teamDetails.founded}</p>
+          <p className="team-colors">Colors: {teamDetails.clubColors}</p>
           <p>Email: {teamDetails.email}</p>
           <p>Website: {teamDetails.website}</p>
           <p>Phone: {teamDetails.phone}</p>

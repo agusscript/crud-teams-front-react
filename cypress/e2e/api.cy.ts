@@ -2,6 +2,19 @@
 
 describe("Crud teams api http request tests", () => {
   const URL = "http://localhost:8080";
+  let newTeamId;
+
+  it("test create team", () => {
+    cy.request("POST", URL + "/teams", { name: "new team", tla: "NT" }).as("createTeam");
+
+    cy.get("@createTeam").should((response: any) => {
+      expect(response).to.have.property("status", 201);
+      expect(response).to.have.property("statusText", "Created");
+      expect(response.body.data).to.have.property("name", "new team");
+      expect(response.body.data).to.have.property("tla", "NT");
+      newTeamId = response.body.data.id;
+    });
+  });
 
   it("test get teams", () => {
     cy.request({
@@ -18,26 +31,12 @@ describe("Crud teams api http request tests", () => {
   it("test get team details", () => {
     cy.request({
       method: "GET",
-      url: URL + "/teams/64",
+      url: URL + "/teams/" + newTeamId,
     }).as("getTeamDetails");
 
     cy.get("@getTeamDetails").should((response) => {
       expect(response).to.have.property("status", 200);
       expect(response).to.have.property("statusText", "OK");
-    });
-  });
-
-  let newTeamId;
-
-  it("test create team", () => {
-    cy.request("POST", URL + "/teams", { name: "new team", tla: "NT" }).as("createTeam");
-
-    cy.get("@createTeam").should((response: any) => {
-      expect(response).to.have.property("status", 201);
-      expect(response).to.have.property("statusText", "Created");
-      expect(response.body.data).to.have.property("name", "new team");
-      expect(response.body.data).to.have.property("tla", "NT");
-      newTeamId = response.body.data.id;
     });
   });
 

@@ -129,16 +129,12 @@ function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
         onChange={onChange}
       />
 
-      <label htmlFor="email">Email *</label>
+      <label htmlFor="email">Email</label>
       <input
         type="text"
         id="email"
-        defaultValue={teamData?.email}
-        {...register("email", {
-          required: errorReqField,
-        })}
-        placeholder={errors.email?.message}
         name="email"
+        defaultValue={teamData?.email}
         onChange={onChange}
       />
 
@@ -160,7 +156,7 @@ function Form({ typeForm, teamData, onSubmit, onChange }: FormProps) {
         onChange={onChange}
       />
 
-      <button className="main-btn" type="submit">
+      <button id="submit-btn" className="main-btn" type="submit">
         {typeForm} Team
       </button>
     </form>
