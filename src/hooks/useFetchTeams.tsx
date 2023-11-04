@@ -2,9 +2,16 @@ import Team from "../entities/Team";
 import { get } from "../services/api";
 import { useState, useEffect } from "react";
 
-function useFetchTeams(): { loading: boolean; teams: Team[] } {
+type useFetchTeams = {
+  loading: boolean;
+  teams: Team[];
+  setUpdateTeams: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function useFetchTeams(): useFetchTeams {
   const [loading, setLoading] = useState(true);
   const [teams, setTeams] = useState([] as Team[]);
+  const [updateTeams, setUpdateTeams] = useState(false);
 
   async function fetchTeams(): Promise<void> {
     setLoading(true);
@@ -22,11 +29,12 @@ function useFetchTeams(): { loading: boolean; teams: Team[] } {
 
   useEffect(() => {
     fetchTeams();
-  }, []);
+  }, [updateTeams]);
 
   return {
     loading,
     teams,
+    setUpdateTeams,
   };
 }
 

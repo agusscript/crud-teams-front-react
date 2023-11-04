@@ -1,13 +1,12 @@
 import "./TeamDetails.scss";
 import Loader from "../../components/Loader/Loader";
+import getImgPlaceholder from "../../services/getImgPlaceholder";
 import useFetchTeamDetails from "../../hooks/useFetchTeamDetails";
 import { useEffect } from "react";
 
 function TeamDetails(): JSX.Element {
   const { loading, teamDetails } = useFetchTeamDetails();
-
-  const imgPlaceholder =
-    "https://raw.githubusercontent.com/agusscript/crud-teams-frontend/main/public/no-img-placeholder.jpg";
+  const imagePlaceholder = getImgPlaceholder();
 
   useEffect(() => {
     document.title = teamDetails.name;
@@ -26,7 +25,7 @@ function TeamDetails(): JSX.Element {
             src={teamDetails.crestUrl}
             alt={teamDetails.name}
             onError={(e) => {
-              e.currentTarget.src = imgPlaceholder;
+              e.currentTarget.src = imagePlaceholder;
             }}
           />
           <p className="team-tla">{teamDetails.tla}</p>

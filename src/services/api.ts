@@ -25,21 +25,15 @@ async function get(path: string): Promise<TeamApiResponse> {
   }
 }
 
-async function send(
-  httpVerb: string,
-  path: string,
-  bodyData: Team
-): Promise<TeamApiResponse> {
+async function send(httpVerb: string, path: string, bodyData: Team): Promise<void> {
   try {
-    const response = await fetch(API + path, {
+    await fetch(API + path, {
       method: httpVerb,
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(bodyData),
     });
-
-    return response.json();
   } catch (error) {
     console.error("Error:", error);
     throw error;

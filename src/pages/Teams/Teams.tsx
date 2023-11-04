@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Teams(): JSX.Element {
-  const { teams, loading } = useFetchTeams();
+  const { teams, loading, setUpdateTeams } = useFetchTeams();
   const [modal, setModal] = useState({
     show: false,
     team: {} as Team | null,
@@ -49,10 +49,7 @@ function Teams(): JSX.Element {
                 <td>
                   <div className="table-btn-container">
                     <Link to={"/teams/" + team.id}>
-                      <button
-                        id="view-team"
-                        className="table-btn"
-                      >
+                      <button id="view-team" className="table-btn">
                         View
                       </button>
                     </Link>
@@ -90,7 +87,12 @@ function Teams(): JSX.Element {
           Add New Team
         </button>
       </Link>
-      <ModalDelete show={modal.show} team={modal.team} setShow={setModal} />
+      <ModalDelete
+        show={modal.show}
+        team={modal.team}
+        setShow={setModal}
+        setUpdateTeams={setUpdateTeams}
+      />
     </section>
   );
 }
