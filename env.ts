@@ -1,5 +1,5 @@
 const BACKEND_URL = "https://crud-teams-backend.onrender.com";
 
-const FRONTEND_URL = "http://localhost:5173";
+const FRONTEND_URL = "https://crud-teams-frontend.vercel.app/";
 
 export { BACKEND_URL, FRONTEND_URL };

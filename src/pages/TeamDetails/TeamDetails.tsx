@@ -22,7 +22,7 @@ function TeamDetails(): JSX.Element {
           </h2>
           <img
             className="team-image"
-            src={teamDetails.crestUrl}
+            src={teamDetails.crestUrl ? teamDetails.crestUrl : imagePlaceholder}
             alt={teamDetails.name}
             onError={(e) => {
               e.currentTarget.src = imagePlaceholder;
