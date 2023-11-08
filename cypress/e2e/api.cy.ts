@@ -1,7 +1,8 @@
 /// <reference types="Cypress" />
+import { BACKEND_URL } from "../../env";
 
 describe("Crud teams api http request tests", () => {
-  const URL = "http://localhost:8080";
+  const URL = BACKEND_URL;
   let newTeamId;
 
   it("test create team", () => {

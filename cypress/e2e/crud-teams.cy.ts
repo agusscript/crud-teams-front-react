@@ -65,7 +65,7 @@ describe("Crud teams e2e tests", () => {
 
   it("Verify that the new team has been added", () => {
     cy.get("#view-teams").click();
-    cy.wait(3000);
+    cy.wait(4500);
 
     cy.get(".teams-amount-number").then((teamsAmount) => {
       const newTeamsAmountNumber = Number(teamsAmount.text());
@@ -109,13 +109,14 @@ describe("Crud teams e2e tests", () => {
       return;
     }
 
-    cy.wait(3000);
+    cy.wait(4500);
     cy.get("#delete-team").first().click();
-    cy.wait(3000);
+    cy.wait(4500);
     cy.get("#confirm-delete").first().click();
   });
 
   it("Verify that the number of teams is correct", () => {
+    cy.wait(5000);
     cy.get(".teams-amount-number").then((teamsAmount) => {
       const newTeamsAmountNumber = Number(teamsAmount.text());
 
@@ -129,7 +130,7 @@ describe("Crud teams e2e tests", () => {
   });
 
   it("Verify that the team details page items are showing", () => {
-    cy.wait(3000);
+    cy.wait(4500);
     cy.get("#view-team").first().click();
     cy.get(".team-details-section").should("be.visible");
     cy.get(".team-name").then((name) => {
