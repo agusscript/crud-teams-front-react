@@ -3,14 +3,14 @@ import Form from "../../components/Form/Form";
 import Team from "../../entities/Team";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { send } from "../../services/api";
+import { sendTeam } from "../../services/api";
 
 function FormAdd(): JSX.Element {
   const navigate = useNavigate();
   const [teamDetails, setTeamDetails] = useState({} as Team);
 
-  async function handleSubmit(): Promise<void> {
-    const newTeamRequest = await send("POST", "/teams", teamDetails);
+  async function handleSubmit() {
+    const newTeamRequest = await sendTeam("POST", "/teams", teamDetails);
 
     if (newTeamRequest?.status != "ERROR") {
       alert("Team added successfully");

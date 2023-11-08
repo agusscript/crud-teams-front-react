@@ -2,7 +2,7 @@ import "./FormEdit.scss";
 import Loader from "../../components/Loader/Loader";
 import Form from "../../components/Form/Form";
 import Team from "../../entities/Team";
-import { send } from "../../services/api";
+import { sendTeam } from "../../services/api";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +34,7 @@ function FormEdit(): JSX.Element {
 
   async function handleSubmit(): Promise<void> {
     const newTeam = mergeTeamDetails();
-    const updatedTeamRequest = await send("PATCH", "/teams/" + teamId, newTeam);
+    const updatedTeamRequest = await sendTeam("PATCH", "/teams/" + teamId, newTeam);
 
     if (updatedTeamRequest?.status != "ERROR") {
       alert("Team updated successfully");

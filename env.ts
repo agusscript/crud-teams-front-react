@@ -1,4 +1,4 @@
-const BACKEND_URL = "http://localhost:8080";
+const BACKEND_URL = "https://crud-teams-backend.onrender.com";
 
 const FRONTEND_URL = "http://localhost:5173";
 

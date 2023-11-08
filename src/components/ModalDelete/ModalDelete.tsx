@@ -1,6 +1,6 @@
 import "./ModalDelete.scss";
 import Team from "../../entities/Team";
-import { send } from "../../services/api";
+import { deleteTeam } from "../../services/api";
 
 type ModalDeleteProps = {
   show: boolean;
@@ -11,7 +11,7 @@ type ModalDeleteProps = {
 
 function ModalDelete({ show, team, setShow, setUpdateTeams }: ModalDeleteProps) {
   function handleDelete(team: Team) {
-    send("DELETE", "/teams/" + team.id, {} as Team);
+    deleteTeam("/teams/" + team.id);
     setShow({ show: false, team: null });
     setUpdateTeams((prev) => !prev);
   }

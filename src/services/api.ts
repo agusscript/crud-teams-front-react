@@ -25,14 +25,34 @@ async function get(path: string): Promise<TeamApiResponse> {
   }
 }
 
-async function send(httpVerb: string, path: string, bodyData: Team): Promise<void> {
+async function sendTeam(
+  httpVerb: string,
+  path: string,
+  bodyData: Team
+): Promise<TeamApiResponse> {
+  const settings = {
+    method: httpVerb,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(bodyData),
+  };
+
+  try {
+    const response = await fetch(API + path, settings);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+async function deleteTeam(path: string): Promise<void> {
   try {
     await fetch(API + path, {
-      method: httpVerb,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bodyData),
+      method: "DELETE",
     });
   } catch (error) {
     console.error("Error:", error);
@@ -40,4 +60,4 @@ async function send(httpVerb: string, path: string, bodyData: Team): Promise<voi
   }
 }
 
-export { get, send };
+export { get, sendTeam, deleteTeam };
